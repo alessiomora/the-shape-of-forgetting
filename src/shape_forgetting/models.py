@@ -23,5 +23,9 @@ def build_model(config: ExperimentConfig, pretrained: bool = True) -> nn.Module:
     raise ValueError(f"Unsupported model in minimal repo: {config.model}")
 
 
+def create_model(config: ExperimentConfig, pretrained: bool = True) -> nn.Module:
+    return build_model(config, pretrained=pretrained)
+
+
 def uses_pretrained_initialization(config: ExperimentConfig) -> bool:
     return config.model in {"deit_tiny_patch16_224", "vit_small_patch16_224"}
