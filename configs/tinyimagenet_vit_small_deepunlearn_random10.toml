@@ -1,0 +1,33 @@
+[experiment]
+name = "tinyimagenet_vit_small_deepunlearn_random10"
+dataset = "tinyimagenet"
+model = "vit_small_patch16_224"
+num_classes = 200
+forget_fraction = 0.10
+forget_strategy = "deepunlearn_random"
+val_fraction = 0.15
+
+[paths]
+data_dir = "./data"
+run_dir = "./runs"
+
+[training]
+epochs = 20
+batch_size = 128
+num_workers = 8
+amp = true
+deterministic = true
+optimizer = "adamw"
+learning_rate = 1e-4
+weight_decay = 0.05
+momentum = 0.9
+warmup_epochs = 2
+image_size = 224
+normalization = "imagenet"
+
+[scheduler]
+name = "cosine"
+
+[extraction]
+batch_size = 128
+
