@@ -1,16 +1,12 @@
-# The Shape of Forgetting: Minimal Reproducibility Code
+# The Shape of Forgetting: Reproducibility Code
 
-This repository contains a minimal implementation for reproducing the Section 6
-forget-only experiments of the paper. It intentionally includes only:
+This repository contains implementation for reproducing the Section 6 experiments of the paper. It includes :
 
-- deterministic DeepUnlearn-style random deletion splits;
+- deterministic random deletion splits;
 - original and retrained reference training;
 - Rank-Spread Flip (RSF) forget-only distillation;
 - RSF change-budget (`rho`) sensitivity sweeps;
 - U-MIA logging on forget vs validation samples.
-
-It excludes the exploratory diagnostics, fixed-teacher tables, and other
-baseline implementations from the research codebase.
 
 ## Installation
 
