@@ -40,7 +40,14 @@ def compute_umia(
     samples as the non-member reference class.  We report the strongest of
     three simple output-only scores for auditability.
     """
-    y_true = np.concatenate([np.ones(len(forget_labels), dtype=bool), np.zeros(len(val_labels), dtype=bool)])
+    available_forget = len(forget_labels)
+    available_validation = len(val_labels)
+    count = min(available_forget, available_validation)
+    forget_probs = forget_probs[:count]
+    forget_labels = forget_labels[:count]
+    val_probs = val_probs[:count]
+    val_labels = val_labels[:count]
+    y_true = np.concatenate([np.ones(count, dtype=bool), np.zeros(count, dtype=bool)])
     score_bank = {
         "confidence": np.concatenate([
             forget_probs[np.arange(len(forget_labels)), forget_labels],
@@ -64,6 +71,8 @@ def compute_umia(
         "u_mia_indiscernibility": float(1.0 - abs(acc - 0.5) / 0.5),
         "attack_score": name,
         "attack_threshold": float(threshold),
-        "forget_samples": int(len(forget_labels)),
-        "validation_samples": int(len(val_labels)),
+        "forget_samples": int(count),
+        "validation_samples": int(count),
+        "available_forget_samples": int(available_forget),
+        "available_validation_samples": int(available_validation),
     }

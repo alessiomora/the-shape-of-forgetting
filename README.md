@@ -144,7 +144,9 @@ reported experiments and sensitivity sweeps:
 
 The `u-mia` command implements the output-only U-MIA diagnostic used for the
 paper tables. Forget samples are treated as the positive side of the attack and
-validation samples as the non-member reference side. The implementation reports:
+validation samples as the non-member reference side. The two sides are balanced
+by using the same number of forget and validation samples, so attack accuracy is
+not inflated by class-prior imbalance. The implementation reports:
 
 - `u_mia_accuracy`
 - `u_mia_auroc`
